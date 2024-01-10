@@ -1,4 +1,4 @@
-  
+
 /**
  * To run this file in Gitpod, use the 
  * command node reduce.js in the terminal
@@ -6,7 +6,20 @@
 
 
 // Summing an array of numbers:
+const nums = [0, 1, 2, 3, 4];
+let sum = nums.reduce((acc,curr) => acc + curr, 0);
+console.log(sum)
 
+const nums1 = [1, 2, 3, 4, 5];
+let sum1 = nums1.reduce((acc1,curr1) => {
+  console.log(
+    "Accumulator:", acc1,
+    "Current Value:", curr1,
+    "Total:", acc1 + curr1
+  );
+  return acc1 +curr1;
+},0);
+console.log(sum1)
 
 const teamMembers = [
   {
@@ -32,6 +45,19 @@ const teamMembers = [
 ];
 
 // Totaling a specific object property
-
+let totalExperience = teamMembers.reduce((acc, curr) => acc + curr.yrsExperience, 0);
+console.log(totalExperience);
 
 // Grouping by a property, and totaling it too
+// {Developer: 12, Designer: 4} <-- This is what we want
+let experienceByProfession = teamMembers.reduce((acc, curr) => {
+  let key = curr.profession;
+  if (!acc[key]) {
+    acc[key] = curr.yrsExperience;
+  }else {
+    acc[key] += curr.yrsExperience;
+  }
+  return acc;
+}, {});
+
+console.log(experienceByProfession);
